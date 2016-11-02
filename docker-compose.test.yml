@@ -1,0 +1,12 @@
+sut:
+  build: .
+  command: npm run lint && npm test && rethink-migrate up && npm run bdd
+  volumes: 
+    - ./features:/app/features
+  links:
+    - db
+  environment:
+    - db__db: 'test-db'
+    - db__host: 'http://db:8080'
+db:
+  image: rethink:2.3

@@ -1,0 +1,22 @@
+{
+  "name": "cucumbertest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bdd": "./node_modules/cucumber/bin/cucumber.js ./test/bdd"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "cucumber": "^1.3.1",
+    "gulp": "^3.9.1",
+    "supertest": "^2.0.1"
+  },
+  "dependencies": {
+    "rethinkdbdash": "^2.3.23"
+  }
+}
