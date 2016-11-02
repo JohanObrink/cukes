@@ -1,13 +1,10 @@
 module.exports = function () {
 
-  this.Given(/^There is a user called "([^"]*)"$/, function (name) {
+  this.Given('the following users exist:', function (users) {
     return r
       .table('users')
-      .insert({name})
+      .insert(users.hashes())
       .run()
-      .then(result => {
-        this.userId = result.generated_keys[0]
-      })
   })
   this.Given(/^The world is sane$/, function () {
   })
@@ -16,13 +13,14 @@ module.exports = function () {
     
   })
 
-  this.Then(/^I should see "([^"]*)"$/, function (text) {
+  this.Then(/^I can get a user with the name "([^"]*)" from the database$/, function (name) {
     return r
       .table('users')
-      .get(this.userId)
+      .filter({name})
       .run()
-      .then(user => {
-        expect(user).to.exist
+      .then(result => {
+        expect(result).to.have.length(1)
+        expect(result[0].name).to.equal(name)
       })
   })
 

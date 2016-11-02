@@ -2,9 +2,14 @@ Feature: My first
   Something, something, something dark side
 
   Scenario: Running integration tests against db
-    Given There is a user called "Johan"
+    Given the following users exist:
+      | name   | email              | twitter         |
+      | Aslak  | aslak@cucumber.io  | @aslak_hellesoy |
+      | Julien | julien@cucumber.io | @jbpros         |
+      | Matt   | matt@cucumber.io   | @mattwynne      |
+      | Johan  | johan@cucumber.io  | @JohanObrink    |
     When Do something
-    Then I should see "Something"
+    Then I can get a user with the name "Johan" from the database
 
   Scenario: Running another scenario
     Given The world is sane
